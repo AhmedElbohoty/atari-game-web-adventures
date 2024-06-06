@@ -1,13 +1,18 @@
-import { usePacmanGameContext, usePacmanPacmanContext } from "services/context";
+import { usePacmanGameContext } from "services/context";
 import { OBJECT_TYPE } from "services/constants";
 
 // CSS prefix: .pacstartbtn-
 import "./style.css";
 
 function StartButton() {
-  const { setGameWin, setPowerPillActive, setScore, addObject } =
-    usePacmanGameContext();
-  const { setPos, setSpeed } = usePacmanPacmanContext();
+  const {
+    setGameWin,
+    setPowerPillActive,
+    setScore,
+    addObject,
+    setPos,
+    setSpeed,
+  } = usePacmanGameContext();
 
   function onClick() {
     setGameWin(false);
