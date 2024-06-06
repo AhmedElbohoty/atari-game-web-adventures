@@ -1,0 +1,32 @@
+.games {
+  padding: 48px 32px;
+}
+
+.games-h1 {
+  width: 100%;
+  margin-bottom: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-weight: 500;
+  color: var(--font-color);
+}
+
+.games-main {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 24px;
+}
+
+@media screen and (max-width: 1023px) {
+  .games-main {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .games-main {
+    grid-template-columns: 1fr;
+  }
+}

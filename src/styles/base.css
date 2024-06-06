@@ -1,0 +1,110 @@
+:root {
+  --main-color: #6874d0;
+  --font-color: #eef0eb;
+
+  --drop-shadow: 1px 1px 5px rgba(12, 9, 16, 0.3);
+  --card-background: #f4f9e9;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+}
+
+html,
+body,
+#root {
+  width: 100dvw;
+  height: 100%;
+}
+
+body {
+  background-color: var(--main-color);
+  font-family: "Roboto", sans-serif;
+  font-variant-ligatures: none;
+  font-feature-settings: unset;
+}
+
+#root-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  pointer-events: none;
+  z-index: 999;
+}
+
+a {
+  text-decoration: none;
+}
+
+button,
+textarea {
+  border: none;
+  font-size: 100%;
+  background-color: transparent;
+  font-family: inherit;
+}
+
+button:focus {
+  outline: none;
+}
+
+svg {
+  display: block;
+}
+
+input {
+  outline: none;
+  font-family: inherit;
+  background-color: transparent;
+}
+
+input::placeholder {
+  font-family: inherit;
+}
+
+h2 {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+textarea {
+  outline: none;
+  resize: none;
+}
+
+li {
+  list-style: none;
+  list-style-position: inside;
+}
+
+dialog {
+  border: none;
+  background-color: transparent;
+  max-width: unset;
+  max-height: unset;
+}
+
+dialog::backdrop {
+  background-color: transparent;
+}
+
+[popover] {
+  contain: layout style;
+  outline: none;
+  border: none;
+  background-color: transparent;
+  overflow: visible;
+}
+
+/* Medium */
+@media screen and (max-width: 1023px) {
+}
+
+/* Small */
+@media screen and (max-width: 767px) {
+}
