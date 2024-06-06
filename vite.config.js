@@ -14,19 +14,15 @@ export default defineConfig({
 
   resolve: {
     alias: {
-      "@pages": path.resolve(new URL("./src/pages", import.meta.url).pathname),
-      "@components": path.resolve(
+      pages: path.resolve(new URL("./src/pages", import.meta.url).pathname),
+      components: path.resolve(
         new URL("./src/components", import.meta.url).pathname
       ),
-      "@assets": path.resolve(
-        new URL("./src/assets", import.meta.url).pathname
-      ),
-      "@services": path.resolve(
+      assets: path.resolve(new URL("./src/assets", import.meta.url).pathname),
+      services: path.resolve(
         new URL("./src/services", import.meta.url).pathname
       ),
-      "@styles": path.resolve(
-        new URL("./src/styles", import.meta.url).pathname
-      ),
+      styles: path.resolve(new URL("./src/styles", import.meta.url).pathname),
     },
   },
 });

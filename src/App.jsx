@@ -1,24 +1,24 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
-import Games from "@pages/Games/Games";
-import Pacman from "@pages/Pacman/Pacman";
+import GamesPage from "pages/GamesPage/GamesPage";
+import PacmanPage from "pages/PacmanPage/PacmanPage";
 
-import { AppContext } from "@services/context";
+import { AppContext } from "services/context";
 
-import "@styles/base.css";
+import "styles/base.css";
 
 const router = createBrowserRouter([
   {
     path: "/games",
-    element: <Games />,
+    element: <GamesPage />,
   },
   {
     path: "/games/pacman",
-    element: <Pacman />,
+    element: <PacmanPage />,
   },
   {
     path: "*",
-    element: <Games />,
+    element: <GamesPage />,
   },
 ]);
 

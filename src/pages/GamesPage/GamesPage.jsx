@@ -1,6 +1,6 @@
-import GameCard from "@pages/Games/GameCard/GameCard";
+import GameCard from "pages/GamesPage/GameCard/GameCard";
 
-import pacmanIcon from "@assets/pacman.png";
+import pacmanIcon from "assets/pacman.png";
 
 // CSS prefix: .games-
 import "./style.css";
