@@ -1,0 +1,31 @@
+.about {
+  margin-bottom: 48px;
+}
+
+.about-h2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--font-color);
+  font-size: 32px;
+  margin-bottom: 24px;
+}
+
+.about-desc {
+  color: #f4faff;
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.about-github {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #f4faff;
+}
+
+.about-github-link {
+  margin-left: 8px;
+  color: #ff6663;
+}

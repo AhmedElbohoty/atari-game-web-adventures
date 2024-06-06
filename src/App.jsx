@@ -1,5 +1,6 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
+import LandingPage from "pages/LandingPage/LandingPage";
 import GamesPage from "pages/GamesPage/GamesPage";
 import PacmanPage from "pages/PacmanPage/PacmanPage";
 
@@ -18,7 +19,7 @@ const router = createBrowserRouter([
   },
   {
     path: "*",
-    element: <GamesPage />,
+    element: <LandingPage />,
   },
 ]);
 
