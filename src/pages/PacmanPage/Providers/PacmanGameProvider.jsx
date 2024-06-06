@@ -7,7 +7,7 @@ function PacmanGameProvider({ children }) {
   const count = useRef(0);
   const [score, setScore] = useState(0);
   const [timer, setTimer] = useState(null);
-  const [win, setWin] = useState(false);
+  const [gameWin, setGameWin] = useState(false);
   const [powerPillActive, setPowerPillActive] = useState(false);
   const [powerPillTimer, setPowerPillTimer] = useState(null);
 
@@ -17,7 +17,7 @@ function PacmanGameProvider({ children }) {
     return {
       index,
       square,
-      classList: ["sqaure"],
+      classList: ["sqaure", CLASS_LIST[square]],
     };
   });
   const [grid, setGrid] = useState(elements);
@@ -58,8 +58,8 @@ function PacmanGameProvider({ children }) {
     timer,
     setTimer,
 
-    win,
-    setWin,
+    gameWin,
+    setGameWin,
 
     powerPillActive,
     setPowerPillActive,

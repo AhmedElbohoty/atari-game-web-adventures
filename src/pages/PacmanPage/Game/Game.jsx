@@ -1,4 +1,4 @@
-import { GRID_SIZE, CELL_SIZE, CLASS_LIST } from "services/constants";
+import { GRID_SIZE, CELL_SIZE } from "services/constants";
 import { usePacmanGameContext } from "services/context";
 
 // CSS prefix: .pacman-game-
@@ -7,11 +7,11 @@ import "./style.css";
 function Game() {
   const { grid } = usePacmanGameContext();
 
-  const elements = grid.map(({ square }, index) => {
+  const elements = grid.map(({ classList }, index) => {
     return (
       <div
         key={index}
-        className={`square ${CLASS_LIST[square]}`}
+        className={`${classList.join(" ")}`}
         style={{ width: `${CELL_SIZE}px`, height: `${CELL_SIZE}px` }}
       ></div>
     );

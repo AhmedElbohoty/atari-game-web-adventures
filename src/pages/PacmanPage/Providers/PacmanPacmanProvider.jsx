@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { DIRECTIONS, OBJECT_TYPE } from "services/constants";
 
 import { PacmanPacmanContext, usePacmanGameContext } from "services/context";
@@ -16,6 +16,12 @@ function PacmanPacmanProvider({ children }) {
   const [powerPill, setPowerPill] = useState(false);
   const [rotation, setRotation] = useState(true);
 
+  useEffect(() => {
+    document.addEventListener("keydown", handleKeyInput);
+
+    return () => document.removeEventListener("keydown", handleKeyInput);
+  }, [pos]);
+
   function shouldMove() {
     if (!dir) return false;
 
@@ -31,8 +37,8 @@ function PacmanPacmanProvider({ children }) {
     let nextMovePos = pos + dir.movement;
 
     if (
-      objectExist(nextMovePos, OBJECT_TYPE.WALL) ||
-      objectExist(nextMovePos, OBJECT_TYPE.GHOSTLAIR)
+      objectExist(nextMovePos, [OBJECT_TYPE.WALL]) ||
+      objectExist(nextMovePos, [OBJECT_TYPE.GHOSTLAIR])
     ) {
       nextMovePos = pos;
     }
@@ -61,7 +67,7 @@ function PacmanPacmanProvider({ children }) {
     }
 
     const nextMovePos = pos + dir.movement;
-    if (objectExist(nextMovePos, OBJECT_TYPE.WALL)) return;
+    if (objectExist(nextMovePos, [OBJECT_TYPE.WALL])) return;
 
     setDir(dir);
   }
