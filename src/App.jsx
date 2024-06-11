@@ -1,10 +1,12 @@
+import { Provider } from "react-redux";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
 import LandingPage from "pages/LandingPage/LandingPage";
 import GamesPage from "pages/GamesPage/GamesPage";
 import PacmanPage from "pages/PacmanPage/PacmanPage";
+import AppProvider from "./AppProvider";
 
-import { AppContext } from "services/context";
+import store from "store/store";
 
 import "styles/base.css";
 
@@ -24,12 +26,12 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-  const contextValue = {};
-
   return (
-    <AppContext.Provider value={contextValue}>
-      <RouterProvider router={router} />
-    </AppContext.Provider>
+    <Provider store={store}>
+      <AppProvider>
+        <RouterProvider router={router} />
+      </AppProvider>
+    </Provider>
   );
 }
 

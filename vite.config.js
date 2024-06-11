@@ -23,6 +23,7 @@ export default defineConfig({
         new URL("./src/services", import.meta.url).pathname
       ),
       styles: path.resolve(new URL("./src/styles", import.meta.url).pathname),
+      store: path.resolve(new URL("./src/store", import.meta.url).pathname),
     },
   },
 });
