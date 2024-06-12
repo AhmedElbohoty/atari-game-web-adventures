@@ -22,6 +22,9 @@ export const {
   updateScore,
   updatePacSpeed,
   movePacman,
+  moveGhosts,
+  shouldGhostMove,
+  addGhost,
 } = appSlice.actions;
 
 export default appSlice.reducer;

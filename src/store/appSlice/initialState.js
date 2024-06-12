@@ -1,3 +1,6 @@
+import { DIRECTIONS, OBJECT_TYPE } from "services/constants";
+const { BLINKY, PINKY, INKY, CLYDE } = OBJECT_TYPE;
+
 const initialState = {
   grid: [],
   dotCount: 0,
@@ -12,6 +15,48 @@ const initialState = {
     timer: 0,
     powerPill: false,
     rotation: true,
+  },
+  ghosts: {
+    [BLINKY]: {
+      name: BLINKY,
+      startPos: 188,
+      pos: 188,
+      dir: DIRECTIONS.ArrowRight,
+      speed: 5,
+      timer: 0,
+      isScared: false,
+      rotation: false,
+    },
+    [PINKY]: {
+      name: PINKY,
+      speed: 4,
+      startPos: 209,
+      pos: 209,
+      dir: DIRECTIONS.ArrowRight,
+      timer: 0,
+      isScared: false,
+      rotation: false,
+    },
+    [INKY]: {
+      name: INKY,
+      speed: 3,
+      startPos: 230,
+      pos: 230,
+      dir: DIRECTIONS.ArrowRight,
+      timer: 0,
+      isScared: false,
+      rotation: false,
+    },
+    [CLYDE]: {
+      name: CLYDE,
+      speed: 2,
+      startPos: 251,
+      pos: 251,
+      dir: DIRECTIONS.ArrowRight,
+      timer: 0,
+      isScared: false,
+      rotation: false,
+    },
   },
 };
 

@@ -1,5 +1,4 @@
-import { current } from "@reduxjs/toolkit";
-import { OBJECT_TYPE } from "services/constants";
+import { DIRECTIONS, OBJECT_TYPE } from "services/constants";
 
 function updateGrid(state, action) {
   state.grid = action.payload;
@@ -31,6 +30,12 @@ function updatePacDir(state, action) {
 
 function updatePacSpeed(state, action) {
   state.pacman.speed = action.payload;
+}
+
+function addGhost(state, action) {
+  const ghost = action.payload;
+
+  state.ghosts[ghost.name] = ghost.name;
 }
 
 function addObject(state, action) {
@@ -70,6 +75,18 @@ function shouldPacmanMove(state) {
   pacman.timer++;
 }
 
+function shouldGhostMove(state, action) {
+  const ghostName = action.payload;
+  const { timer, speed } = state.ghosts[ghostName];
+
+  if (timer === speed) {
+    state.ghosts[ghostName].timer = 0;
+    return true;
+  }
+
+  state.ghosts[ghostName].timer += 1;
+}
+
 function movePacman(state) {
   const shouldMove = shouldPacmanMove(state);
   if (!shouldMove) return;
@@ -97,6 +114,66 @@ function movePacman(state) {
   state.grid = newGrid;
 }
 
+function moveGhosts(state) {
+  const { grid, ghosts } = state;
+  const newGrid = [...grid];
+
+  Object.keys(ghosts).forEach((key) => {
+    const ghost = ghosts[key];
+
+    const shouldMove = shouldGhostMove(state, { payload: ghost.name });
+    if (!shouldMove) return;
+
+    const pos = ghosts[ghost.name].pos;
+
+    // get next move
+    const { dir: direction, pos: position } = ghost;
+
+    let dir = direction;
+    let nextMovePos = position + dir.movement;
+    // Create an array from the diretions objects keys
+    const keys = Object.keys(DIRECTIONS);
+
+    let count = 0;
+    while (
+      grid[nextMovePos].classList.includes(OBJECT_TYPE.WALL) ||
+      grid[nextMovePos].classList.includes(OBJECT_TYPE.GHOST)
+    ) {
+      if (count === 3) break;
+
+      // Get a random key from that array
+      const key = keys[Math.floor(Math.random() * keys.length)];
+      // Set the new direction
+      dir = DIRECTIONS[key];
+      // Set the next move
+      nextMovePos = position + dir.movement;
+
+      console.log("Count", count);
+      count += 1;
+    }
+
+    if (count === 3) return;
+
+    ghosts[ghost.name].pos = nextMovePos;
+
+    const classesToRemove = [OBJECT_TYPE.GHOST, OBJECT_TYPE.SCARED, ghost.name];
+    const classesToAdd = [OBJECT_TYPE.GHOST, ghost.name];
+
+    if (ghost.isScared) {
+      classesToAdd.push(OBJECT_TYPE.SCARED);
+    }
+
+    newGrid[pos].classList = newGrid[pos].classList.filter(
+      (cls) => !classesToRemove.includes(cls)
+    );
+    classesToAdd.forEach((cls) => {
+      newGrid[nextMovePos].classList.push(cls);
+    });
+  });
+
+  state.grid = newGrid;
+}
+
 const reducers = {
   updateGrid,
   updateDotCount,
@@ -110,6 +187,9 @@ const reducers = {
   updateScore,
   updatePacSpeed,
   movePacman,
+  moveGhosts,
+  shouldGhostMove,
+  addGhost,
 };
 
 export default reducers;

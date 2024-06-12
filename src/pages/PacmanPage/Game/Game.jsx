@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 
-import { GRID_SIZE, CELL_SIZE } from "services/constants";
+import { GRID_SIZE, CELL_SIZE, OBJECT_TYPE } from "services/constants";
 import { selectGrid, selectPacDir } from "store/appSlice/selectors";
 
 // CSS prefix: .pacman-game-
@@ -14,8 +14,11 @@ function Game() {
     const style = {
       width: `${CELL_SIZE}px`,
       height: `${CELL_SIZE}px`,
-      rotate: `${pacDir?.rotation}deg`,
     };
+
+    if (classList.includes(OBJECT_TYPE.PACMAN)) {
+      style.rotate = `${pacDir?.rotation}deg`;
+    }
     return (
       <div key={index} className={`${classList.join(" ")}`} style={style}></div>
     );
