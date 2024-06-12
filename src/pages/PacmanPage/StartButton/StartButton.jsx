@@ -4,11 +4,15 @@ import { useAppContext } from "services/context";
 import "./style.css";
 
 function StartButton() {
-  const { startGame } = useAppContext();
+  const { startGame, isPlaying } = useAppContext();
 
   function onClick() {
     startGame();
   }
+
+  // if (isPlaying) {
+  //   return <></>;
+  // }
 
   return (
     <button className="pacstartbtn" onClick={onClick}>

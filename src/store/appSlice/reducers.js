@@ -8,8 +8,16 @@ function updateDotCount(state, action) {
   state.dotCount = action.payload;
 }
 
+function decrementDotCount(state) {
+  state.dotCount -= 1;
+}
+
 function updateScore(state, action) {
   state.score = action.payload;
+}
+
+function addScore(state, action) {
+  state.score += action.payload;
 }
 
 function updateGameWin(state, action) {
@@ -32,10 +40,21 @@ function updatePacSpeed(state, action) {
   state.pacman.speed = action.payload;
 }
 
-function addGhost(state, action) {
-  const ghost = action.payload;
+function updatePacPowerPill(state, action) {
+  state.pacman.powerPill = action.payload;
+}
 
-  state.ghosts[ghost.name] = ghost.name;
+function updateGhostsScared(state, action) {
+  const { ghosts } = state;
+  Object.keys(ghosts).forEach((key) => {
+    state.ghosts[key].isScared = action.payload;
+  });
+}
+
+function resetGhostPos(state, action) {
+  const ghostName = action.payload;
+  const ghost = state.ghosts[ghostName];
+  state.ghosts[ghostName].pos = ghost.startPos;
 }
 
 function addObject(state, action) {
@@ -55,8 +74,8 @@ function removeObject(state, action) {
   const { pos, classes = [] } = action.payload;
 
   const newGrid = [...grid];
-  newGrid[pos].classList = newGrid[pos].classList.filter((cls) =>
-    classes.includes(cls)
+  newGrid[pos].classList = newGrid[pos].classList.filter(
+    (cls) => !classes.includes(cls)
   );
 
   state.grid = newGrid;
@@ -148,7 +167,6 @@ function moveGhosts(state) {
       // Set the next move
       nextMovePos = position + dir.movement;
 
-      console.log("Count", count);
       count += 1;
     }
 
@@ -189,7 +207,11 @@ const reducers = {
   movePacman,
   moveGhosts,
   shouldGhostMove,
-  addGhost,
+  addScore,
+  resetGhostPos,
+  decrementDotCount,
+  updatePacPowerPill,
+  updateGhostsScared,
 };
 
 export default reducers;

@@ -24,7 +24,11 @@ export const {
   movePacman,
   moveGhosts,
   shouldGhostMove,
-  addGhost,
+  addScore,
+  resetGhostPos,
+  decrementDotCount,
+  updatePacPowerPill,
+  updateGhostsScared,
 } = appSlice.actions;
 
 export default appSlice.reducer;
