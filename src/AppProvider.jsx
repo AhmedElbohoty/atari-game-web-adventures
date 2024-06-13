@@ -122,6 +122,8 @@ function Provider({ children }) {
   }
 
   function startGame() {
+    if (isPlaying) return;
+
     playAudio(soundGameStare);
     setIsPlaying(true);
 

@@ -1,3 +1,20 @@
 .pacstartbtn {
+  width: 200px;
+  height: 48px;
   margin-top: 24px;
+  border-radius: 8px;
+  background-color: #fcf5c7;
+  transition: opacity ease-in-out 400ms;
+  cursor: pointer;
+}
+
+@media screen and (hover: hover) {
+  .pacstartbtn:hover {
+    opacity: 0.7;
+  }
+}
+
+.pacstartbtn[data-disabled="true"] {
+  opacity: 0.7;
+  cursor: default;
 }

@@ -1,0 +1,31 @@
+.app-header {
+  width: 100%;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  border-bottom: #cedfd9 solid 1px;
+}
+
+.app-header-logo {
+  width: 64px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.app-header-logo img {
+  width: 48px;
+  height: 48px;
+}
+
+.app-header-link {
+  width: 120px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ff6663;
+  cursor: pointer;
+}

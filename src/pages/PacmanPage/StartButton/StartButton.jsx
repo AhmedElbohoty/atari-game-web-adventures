@@ -10,13 +10,9 @@ function StartButton() {
     startGame();
   }
 
-  // if (isPlaying) {
-  //   return <></>;
-  // }
-
   return (
-    <button className="pacstartbtn" onClick={onClick}>
-      StartButton
+    <button className="pacstartbtn" onClick={onClick} data-disabled={isPlaying}>
+      Start
     </button>
   );
 }
