@@ -11,8 +11,8 @@ function StartButton() {
   }
 
   return (
-    <button className="pacstartbtn" onClick={onClick} data-disabled={isPlaying}>
-      Start
+    <button className="pacstartbtn" onClick={onClick}>
+      {isPlaying ? "Reset" : "Start"}
     </button>
   );
 }

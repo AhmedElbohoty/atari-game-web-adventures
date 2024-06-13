@@ -1,9 +1,20 @@
-import { DIRECTIONS, OBJECT_TYPE } from "services/constants";
+import { CLASS_LIST, DIRECTIONS, LEVEL, OBJECT_TYPE } from "services/constants";
 const { BLINKY, PINKY, INKY, CLYDE } = OBJECT_TYPE;
 
+let dotCount = 0;
+const grid = LEVEL.map((square, index) => {
+  if (CLASS_LIST[square] === OBJECT_TYPE.DOT) dotCount++;
+
+  return {
+    index,
+    square,
+    classList: ["sqaure", CLASS_LIST[square]],
+  };
+});
+
 const initialState = {
-  grid: [],
-  dotCount: 0,
+  grid,
+  dotCount,
   score: 0,
   gameWin: false,
   powerPillActive: false,

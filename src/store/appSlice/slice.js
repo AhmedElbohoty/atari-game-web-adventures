@@ -29,6 +29,7 @@ export const {
   decrementDotCount,
   updatePacPowerPill,
   updateGhostsScared,
+  resetPacman,
 } = appSlice.actions;
 
 export default appSlice.reducer;

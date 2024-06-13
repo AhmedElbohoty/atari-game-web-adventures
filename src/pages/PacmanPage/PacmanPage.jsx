@@ -1,17 +1,11 @@
-import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import StartButton from "pages/PacmanPage/StartButton/StartButton";
 import Game from "pages/PacmanPage/Game/Game";
 import Score from "pages/PacmanPage/Score/Score";
 
-import { CLASS_LIST, DIRECTIONS, LEVEL, OBJECT_TYPE } from "services/constants";
-import {
-  movePacman,
-  updateDotCount,
-  updateGrid,
-  updatePacDir,
-} from "store/appSlice/slice";
+import { DIRECTIONS, OBJECT_TYPE } from "services/constants";
+import { movePacman, updatePacDir } from "store/appSlice/slice";
 import { selectGrid, selectPacPos } from "store/appSlice/selectors";
 
 // CSS prefix: .pacman-page-
@@ -21,22 +15,6 @@ function PacmanPage() {
   const dispatch = useDispatch();
   const grid = useSelector(selectGrid);
   const pacPos = useSelector(selectPacPos);
-
-  useEffect(() => {
-    let dotCount = 0;
-    const grid = LEVEL.map((square, index) => {
-      if (CLASS_LIST[square] === OBJECT_TYPE.DOT) dotCount++;
-
-      return {
-        index,
-        square,
-        classList: ["sqaure", CLASS_LIST[square]],
-      };
-    });
-
-    dispatch(updateGrid(grid));
-    dispatch(updateDotCount(dotCount));
-  }, []);
 
   function onKeyDown(e) {
     let dir;

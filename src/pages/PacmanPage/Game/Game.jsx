@@ -54,22 +54,22 @@ function Game() {
 
   function onSwipedLeft({ event }) {
     event.stopPropagation();
-    handleSwipe(DIRECTIONS.ArrowRight);
+    handleSwipe(DIRECTIONS.ArrowLeft);
   }
 
   function onSwipedRight({ event }) {
     event.stopPropagation();
-    handleSwipe(DIRECTIONS.ArrowLeft);
+    handleSwipe(DIRECTIONS.ArrowRight);
   }
 
   function onSwipedUp({ event }) {
     event.stopPropagation();
-    handleSwipe(DIRECTIONS.ArrowDown);
+    handleSwipe(DIRECTIONS.ArrowUp);
   }
 
   function onSwipedDown({ event }) {
     event.stopPropagation();
-    handleSwipe(DIRECTIONS.ArrowUp);
+    handleSwipe(DIRECTIONS.ArrowDown);
   }
 
   const style = { gridTemplateColumns: `repeat(${GRID_SIZE}, ${CELL_SIZE}px)` };

@@ -1,5 +1,11 @@
 import { DIRECTIONS, OBJECT_TYPE } from "services/constants";
 
+import initialState from "store/appSlice/initialState";
+
+function resetPacman() {
+  return initialState;
+}
+
 function updateGrid(state, action) {
   state.grid = action.payload;
 }
@@ -212,6 +218,7 @@ const reducers = {
   decrementDotCount,
   updatePacPowerPill,
   updateGhostsScared,
+  resetPacman,
 };
 
 export default reducers;

@@ -19,13 +19,12 @@ import {
   movePacman,
   removeObject,
   resetGhostPos,
+  resetPacman,
   updateGameWin,
   updateGhostsScared,
   updatePacPos,
   updatePacPowerPill,
   updatePacSpeed,
-  updatePowerPillActive,
-  updateScore,
 } from "store/appSlice/slice";
 import store from "store/store";
 
@@ -122,15 +121,17 @@ function Provider({ children }) {
   }
 
   function startGame() {
-    if (isPlaying) return;
+    dispatch(resetPacman());
+
+    if (isPlaying) {
+      clearInterval(timer.current);
+      clearInterval(powerPillTimer.current);
+      setIsPlaying(false);
+      return;
+    }
 
     playAudio(soundGameStare);
     setIsPlaying(true);
-
-    // Reset game
-    dispatch(updateScore(0));
-    dispatch(updateGameWin(false));
-    dispatch(updatePowerPillActive(false));
 
     // Create pacman
     dispatch(updatePacPos(287));
