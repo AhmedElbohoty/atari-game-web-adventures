@@ -24,6 +24,7 @@ export default defineConfig({
       ),
       styles: path.resolve(new URL("./src/styles", import.meta.url).pathname),
       store: path.resolve(new URL("./src/store", import.meta.url).pathname),
+      sounds: path.resolve(new URL("./src/sounds", import.meta.url).pathname),
     },
   },
 });

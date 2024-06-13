@@ -5,6 +5,12 @@ import { GLOBAL_SPEED, OBJECT_TYPE, POWER_PILL_TIME } from "services/constants";
 import { AppContext } from "services/context";
 import { selectIsPosHasClass } from "store/appSlice/selectors";
 
+import soundDot from "sounds/munch.wav";
+import soundPill from "sounds/pill.wav";
+import soundGameStare from "sounds/game_start.wav";
+import soundGameOver from "sounds/death.wav";
+import soundGhost from "sounds/eat_ghost.wav";
+
 import {
   addObject,
   addScore,
@@ -30,6 +36,7 @@ function Provider({ children }) {
   const [isPlaying, setIsPlaying] = useState(false);
 
   function gameOver() {
+    playAudio(soundGameOver);
     clearInterval(timer.current);
     clearInterval(powerPillTimer.current);
     setIsPlaying(false);
@@ -45,6 +52,7 @@ function Provider({ children }) {
     if (!collidedGhostName) return;
 
     if (pacman.powerPill) {
+      playAudio(soundGhost);
       dispatch(addScore(100));
       dispatch(
         removeObject({
@@ -65,6 +73,7 @@ function Provider({ children }) {
     const isDot = selectIsPosHasClass(storeState, pacman.pos, OBJECT_TYPE.DOT);
     if (!isDot) return;
 
+    playAudio(soundDot);
     dispatch(decrementDotCount());
     dispatch(removeObject({ pos: pacman.pos, classes: [OBJECT_TYPE.DOT] }));
     dispatch(addScore(10));
@@ -80,6 +89,8 @@ function Provider({ children }) {
       OBJECT_TYPE.PILL
     );
     if (!isPill) return;
+
+    playAudio(soundPill);
 
     dispatch(removeObject({ pos: pacman.pos, classes: [OBJECT_TYPE.PILL] }));
     dispatch(updatePacPowerPill(true));
@@ -111,6 +122,7 @@ function Provider({ children }) {
   }
 
   function startGame() {
+    playAudio(soundGameStare);
     setIsPlaying(true);
 
     // Reset game
@@ -124,6 +136,11 @@ function Provider({ children }) {
     dispatch(addObject({ pos: 287, classes: [OBJECT_TYPE.PACMAN] }));
 
     timer.current = setInterval(() => gameLoop(), GLOBAL_SPEED);
+  }
+
+  function playAudio(audio) {
+    const sound = new Audio(audio);
+    sound.play();
   }
 
   const contextValue = { timer, startGame, isPlaying };
